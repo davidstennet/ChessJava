@@ -4,6 +4,8 @@ import java.util.HashMap;
 public class Main {
 	
 	public static void main(String[] args) {
+
+		// Comment for git
 		
 		HashMap<String, Piece> whiteLocations = new HashMap<String, Piece>();
 		HashMap<String, Piece> blackLocations = new HashMap<String, Piece>();
