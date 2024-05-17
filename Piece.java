@@ -4,11 +4,14 @@ public abstract class Piece {
 	protected int row;
 	protected String imgURL;
 	protected String name;
+    protected boolean isWhite;
 	
-	public Piece(int column, int row, String imgURL, String name) {
+	public Piece(int column, int row, String imgURL, String name, boolean isWhite) {
 		this.column = column;
 		this.row = row;
 		this.imgURL = imgURL;
+        this.name = name;
+        this.isWhite = isWhite;
 	}
 
 	// Getter for xPos
@@ -49,6 +52,16 @@ public abstract class Piece {
     // Setter for name
     public void setName(String name) {
         this.name = name;
+    }
+
+    // Getter for isWhite
+    public boolean isWhite() {
+        return isWhite;
+    }
+
+    // Setter for isWhite
+    public void setWhite(boolean isWhite) {
+        this.isWhite = isWhite;
     }
 
 }

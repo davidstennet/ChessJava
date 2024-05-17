@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.*;
+import java.util.HashMap;
 
 public class ChessGUI extends JFrame {
 
@@ -16,6 +17,9 @@ public class ChessGUI extends JFrame {
 	private final int ROWS = 8;
 	private final int COLUMNS = 8;
 	private JPanel contentPane;
+	private boolean firstClick = true;
+	private Piece clickedPiece;
+	private HashMap<String, JLabelBox> mapOfBoxes = new HashMap<String, JLabelBox>();
 
 	/**
 	 * Create the frame.
@@ -40,10 +44,10 @@ public class ChessGUI extends JFrame {
 
 
 		for (int row = ROWS; row > 0; row--) {
-			for (int column = COLUMNS; column > 0; column--) {
+			for (int column = 1; column <= COLUMNS; column++) {
 
 				// Creates square
-				JLabel square = new JLabel();
+				JLabelBox square = new JLabelBox(row, column);
 				
 
 				// This string is the string combination of the rows and columns so you can interact with Player hashmaps
@@ -62,12 +66,71 @@ public class ChessGUI extends JFrame {
 				square.setBackground(getSquareColor(row, column));
 				square.setOpaque(true);
 				contentPane.add(square);
+				mapOfBoxes.put(xy, square);
 
 				// Mouse listener for the JLabel
 				square.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
+						// Everything is in ColumnRow format 
+						String colRow = Integer.toString(square.getColumn()) + Integer.toString(square.getRow());
+
 						
+						// if (white.getPieceLocation().containsKey(colRow)) {
+						// 	System.out.println(white.getPieceLocation().get(colRow).getName());
+						// }
+						// else if (black.getPieceLocation().containsKey(colRow)) {
+						// 	System.out.println(black.getPieceLocation().get(colRow).getName());
+						// }
+
+
+						if (firstClick && white.getPieceLocation().containsKey(colRow)) {
+							clickedPiece = white.getPieceLocation().get(colRow);
+							firstClick = false;
+						}
+						else if (firstClick && black.getPieceLocation().containsKey(colRow)) {
+							clickedPiece = black.getPieceLocation().get(colRow);
+							firstClick = false;
+						}
+						else if (clickedPiece.isWhite()) { // Moving piece after being clicked
+							// Sets image of original piece to nothin
+							String originalLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
+							JLabelBox originalBox = mapOfBoxes.get(originalLocation);
+							originalBox.setIcon(null);
+							white.getPieceLocation().remove(originalLocation);
+
+							// Sets new locations
+							clickedPiece.setColumn(square.getColumn());
+							clickedPiece.setRow(square.getRow());
+							String newLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
+							white.getPieceLocation().put(newLocation, clickedPiece);
+
+
+							ImageIcon icon = new ImageIcon(clickedPiece.getImgURL());
+							square.setIcon(icon);
+							firstClick = true;
+						}
+						else {
+							// Sets image of original piece to nothin
+							String originalLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
+							JLabelBox originalBox = mapOfBoxes.get(originalLocation);
+							originalBox.setIcon(null);
+							black.getPieceLocation().remove(originalLocation);
+
+							// Sets new locations
+							clickedPiece.setColumn(square.getColumn());
+							clickedPiece.setRow(square.getRow());
+							String newLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
+							black.getPieceLocation().put(newLocation, clickedPiece);
+
+
+							ImageIcon icon = new ImageIcon(clickedPiece.getImgURL());
+							square.setIcon(icon);
+							firstClick = true;
+
+						}
+
+
 					}
 				});
 				
@@ -77,7 +140,7 @@ public class ChessGUI extends JFrame {
 	
 	// Gets the color square depending on 
 	private Color getSquareColor(int row, int col) {
-        return (row + col) % 2 == 0 ? Color.WHITE : Color.GRAY;
+        return (row + col+1) % 2 == 0 ? Color.WHITE : Color.GRAY;
     }
 	
 
