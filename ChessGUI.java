@@ -3,11 +3,10 @@ import java.awt.EventQueue;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
+
 import javax.swing.*;
 import java.util.HashMap;
 
@@ -17,8 +16,6 @@ public class ChessGUI extends JFrame {
 	private final int ROWS = 8;
 	private final int COLUMNS = 8;
 	private JPanel contentPane;
-	private boolean firstClick = true;
-	private Piece clickedPiece;
 	private HashMap<String, JLabelBox> mapOfBoxes = new HashMap<String, JLabelBox>();
 
 	/**
@@ -34,13 +31,13 @@ public class ChessGUI extends JFrame {
 		contentPane.setLayout(new GridLayout(ROWS, COLUMNS, 0, 0));
 		
 		// Initializes the board window
-		initializeBoard(battle.getWhite(), battle.getBlack());
+		initializeBoard(battle, battle.getWhite(), battle.getBlack());
 		
 		
 	}
 	
 	// Creates the Chess Board with alternating colors
-	private void initializeBoard(Player white, Player black) {
+	private void initializeBoard(Battle battle, Player white, Player black) {
 
 
 		for (int row = ROWS; row > 0; row--) {
@@ -75,63 +72,8 @@ public class ChessGUI extends JFrame {
 						// Everything is in ColumnRow format 
 						String colRow = Integer.toString(square.getColumn()) + Integer.toString(square.getRow());
 
-						
-						// if (white.getPieceLocation().containsKey(colRow)) {
-						// 	System.out.println(white.getPieceLocation().get(colRow).getName());
-						// }
-						// else if (black.getPieceLocation().containsKey(colRow)) {
-						// 	System.out.println(black.getPieceLocation().get(colRow).getName());
-						// }
-
-
-						if (firstClick && white.getPieceLocation().containsKey(colRow)) {
-							clickedPiece = white.getPieceLocation().get(colRow);
-							firstClick = false;
-						}
-						else if (firstClick && black.getPieceLocation().containsKey(colRow)) {
-							clickedPiece = black.getPieceLocation().get(colRow);
-							firstClick = false;
-						}
-						else if (clickedPiece.isWhite()) { // Moving piece after being clicked
-							// Sets image of original piece to nothin
-							String originalLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
-							JLabelBox originalBox = mapOfBoxes.get(originalLocation);
-							originalBox.setIcon(null);
-							white.getPieceLocation().remove(originalLocation);
-
-							// Sets new locations
-							clickedPiece.setColumn(square.getColumn());
-							clickedPiece.setRow(square.getRow());
-							String newLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
-							white.getPieceLocation().put(newLocation, clickedPiece);
-
-
-							ImageIcon icon = new ImageIcon(clickedPiece.getImgURL());
-							square.setIcon(icon);
-							firstClick = true;
-						}
-						else {
-							// Sets image of original piece to nothin
-							String originalLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
-							JLabelBox originalBox = mapOfBoxes.get(originalLocation);
-							originalBox.setIcon(null);
-							black.getPieceLocation().remove(originalLocation);
-
-							// Sets new locations
-							clickedPiece.setColumn(square.getColumn());
-							clickedPiece.setRow(square.getRow());
-							String newLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
-							black.getPieceLocation().put(newLocation, clickedPiece);
-
-
-							ImageIcon icon = new ImageIcon(clickedPiece.getImgURL());
-							square.setIcon(icon);
-							firstClick = true;
-
-						}
-
-
-					}
+						battle.clickedOnPiece(colRow, square, mapOfBoxes);
+					}		
 				});
 				
 			}
@@ -141,6 +83,20 @@ public class ChessGUI extends JFrame {
 	// Gets the color square depending on 
 	private Color getSquareColor(int row, int col) {
         return (row + col+1) % 2 == 0 ? Color.WHITE : Color.GRAY;
+    }
+
+	
+
+    
+
+    // Getter for mapOfBoxes
+    public HashMap<String, JLabelBox> getMapOfBoxes() {
+        return mapOfBoxes;
+    }
+
+    // Setter for mapOfBoxes
+    public void setMapOfBoxes(HashMap<String, JLabelBox> mapOfBoxes) {
+        this.mapOfBoxes = mapOfBoxes;
     }
 	
 

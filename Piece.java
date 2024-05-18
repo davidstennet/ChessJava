@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public abstract class Piece {
 	
 	protected int column;
@@ -13,6 +15,8 @@ public abstract class Piece {
         this.name = name;
         this.isWhite = isWhite;
 	}
+
+    abstract boolean canMove(int targetColumn, int targetRow, HashMap<String, Piece> whitePieces, HashMap<String, Piece> blackPieces);
 
 	// Getter for xPos
     public int getColumn() {

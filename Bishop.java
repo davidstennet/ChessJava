@@ -1,3 +1,4 @@
+import java.util.HashMap;
 
 public class Bishop extends Piece {
 	
@@ -5,4 +6,8 @@ public class Bishop extends Piece {
 		super(column, row, imgURL, name, isWhite);
 	}
 
+		
+	public boolean canMove(int targetColumn, int targetRow, HashMap<String, Piece> whitePieces, HashMap<String, Piece> blackPieces) {
+		return false;
+	}
 }
