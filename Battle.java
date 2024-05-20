@@ -108,10 +108,14 @@ public class Battle {
             clickedPiece.setRow(square.getRow());
             String newLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
             white.getPieceLocation().put(newLocation, clickedPiece);
+            if (this.black.getPieceLocation().containsKey(newLocation)) { // Gets rid of piece in opponent hashmap if this is an attacking move
+                this.black.getPieceLocation().remove(newLocation);
+            }
 
 
             ImageIcon icon = new ImageIcon(clickedPiece.getImgURL());
             square.setIcon(icon);
+
             firstClick = true;
             clickedPiece = null;
             this.isWhiteTurn = false;
@@ -129,10 +133,14 @@ public class Battle {
             clickedPiece.setRow(square.getRow());
             String newLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
             black.getPieceLocation().put(newLocation, clickedPiece);
+            if (this.white.getPieceLocation().containsKey(newLocation)) { // Gets rid of piece in opponent hashmap if this is an attacking move
+                this.white.getPieceLocation().remove(newLocation);
+            }
 
 
             ImageIcon icon = new ImageIcon(clickedPiece.getImgURL());
             square.setIcon(icon);
+            
 
             firstClick = true;
             clickedPiece = null;
@@ -161,10 +169,14 @@ public class Battle {
             clickedPiece.setRow(square.getRow());
             String newLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
             white.getPieceLocation().put(newLocation, clickedPiece);
+            if (this.black.getPieceLocation().containsKey(newLocation)) { // Gets rid of piece in opponent hashmap if this is an attacking move
+                this.black.getPieceLocation().remove(newLocation);
+            }
 
 
             ImageIcon icon = new ImageIcon(clickedPiece.getImgURL());
             square.setIcon(icon);
+
             firstClick = true;
             clickedPiece = null;
             this.isWhiteTurn = false;
@@ -182,10 +194,14 @@ public class Battle {
             clickedPiece.setRow(square.getRow());
             String newLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
             black.getPieceLocation().put(newLocation, clickedPiece);
+            if (this.white.getPieceLocation().containsKey(newLocation)) { // Gets rid of piece in opponent hashmap if this is an attacking move
+                this.white.getPieceLocation().remove(newLocation);
+            }
 
 
             ImageIcon icon = new ImageIcon(clickedPiece.getImgURL());
             square.setIcon(icon);
+
 
             firstClick = true;
             clickedPiece = null;
