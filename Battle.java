@@ -214,7 +214,64 @@ public class Battle {
     }
     
     private void clickedOnKnight(String colRow, JLabelBox square, HashMap<String, JLabelBox> mapOfBoxes) {
+        Knight clickedKnight = (Knight)clickedPiece; // Downcasts the pawn
+        // boolean for whether the spot they are moving to is valid
+        boolean canMove = clickedKnight.canMove(square.getColumn(), square.getRow(), this.white.getPieceLocation(), this.black.getPieceLocation()); 
 
+        if (clickedKnight.isWhite() && canMove && this.isWhiteTurn) { // Moving piece after being clicked
+            // Sets image of original piece to nothin
+            String originalLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
+            JLabelBox originalBox = mapOfBoxes.get(originalLocation);
+            originalBox.setIcon(null);
+            white.getPieceLocation().remove(originalLocation);
+
+            // Sets new locations
+            clickedPiece.setColumn(square.getColumn());
+            clickedPiece.setRow(square.getRow());
+            String newLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
+            white.getPieceLocation().put(newLocation, clickedPiece);
+            if (this.black.getPieceLocation().containsKey(newLocation)) { // Gets rid of piece in opponent hashmap if this is an attacking move
+                this.black.getPieceLocation().remove(newLocation);
+            }
+
+
+            ImageIcon icon = new ImageIcon(clickedPiece.getImgURL());
+            square.setIcon(icon);
+
+            firstClick = true;
+            clickedPiece = null;
+            this.isWhiteTurn = false;
+        }
+        else if (!clickedKnight.isWhite() && canMove && !this.isWhiteTurn) {
+            // Sets image of original piece to nothin
+            String originalLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
+            JLabelBox originalBox = mapOfBoxes.get(originalLocation);
+            originalBox.setIcon(null);        clickedPiece.getName();
+
+            black.getPieceLocation().remove(originalLocation);
+
+            // Sets new locations
+            clickedPiece.setColumn(square.getColumn());
+            clickedPiece.setRow(square.getRow());
+            String newLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
+            black.getPieceLocation().put(newLocation, clickedPiece);
+            if (this.white.getPieceLocation().containsKey(newLocation)) { // Gets rid of piece in opponent hashmap if this is an attacking move
+                this.white.getPieceLocation().remove(newLocation);
+            }
+
+
+            ImageIcon icon = new ImageIcon(clickedPiece.getImgURL());
+            square.setIcon(icon);
+
+
+            firstClick = true;
+            clickedPiece = null;
+            this.isWhiteTurn = true;
+        }
+        else {
+            clickedPiece = null;
+            firstClick = true;
+        }
     }
 
     private void clickedOnBishop(String colRow, JLabelBox square, HashMap<String, JLabelBox> mapOfBoxes) {
