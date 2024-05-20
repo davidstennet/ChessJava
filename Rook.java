@@ -10,7 +10,7 @@ public class Rook extends Piece {
 	public boolean canMove(int targetColumn, int targetRow, HashMap<String, Piece> whitePieces, HashMap<String, Piece> blackPieces) {
 		String colRow = Integer.toString(targetColumn) + Integer.toString(targetRow);
 
-		if (isWhite) { // Implementation for moving White Rook
+		if (this.isWhite) { // Implementation for moving White Rook
 			if (whitePieces.containsKey(colRow)) { // If clicked on piece of same color then return false
 				return false;
 			}

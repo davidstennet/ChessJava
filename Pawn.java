@@ -12,7 +12,7 @@ public class Pawn extends Piece {
 	public boolean canMove(int targetColumn, int targetRow, HashMap<String, Piece> whitePieces, HashMap<String, Piece> blackPieces) {
 		String colRow = Integer.toString(targetColumn) + Integer.toString(targetRow);
 
-		if (isWhite) {
+		if (this.isWhite) {
 			// If target location doesn't contain a piece and this piece is white
 			if (!whitePieces.containsKey(colRow) && !blackPieces.containsKey(colRow)) {
 				if (targetColumn == this.column && targetRow == this.row + 1 ) { // If in the same column, row is one above piece

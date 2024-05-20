@@ -10,7 +10,7 @@ public class Knight extends Piece {
 		String colRow = Integer.toString(targetColumn) + Integer.toString(targetRow);
 
 		// Checks whether the Piece is white
-		if (isWhite) {
+		if (this.isWhite) {
 			if (whitePieces.containsKey(colRow)) { // Checks the target location for whether the locations contains a white piece
 				return false;
 			}
