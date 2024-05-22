@@ -85,18 +85,20 @@ public class Main {
 		Player black = new Player("Black", blackLocations);
 
 		Battle battle = new Battle(white, black);
-		
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ChessGUI frame = new ChessGUI(battle);
+					MainMenuGUI frame = new MainMenuGUI(battle);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		
+		
+		
 		
 		
 		

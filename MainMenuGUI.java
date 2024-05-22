@@ -1,26 +1,68 @@
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import javax.swing.*;
 
 public class MainMenuGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private String name = null;
 
 	/**
 	 * Create the frame.
 	 */
-	public MainMenuGUI() {
+	public MainMenuGUI(Battle battle) {
+		setName();
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 250, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(1, 0, 0, 0));
+		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
+
+		JLabel welcomeText = new JLabel("Welcome to Java Chess " + name, SwingConstants.CENTER);
+		contentPane.add(welcomeText);
+
+		// JButton to start the Chess Game
+		JButton startGameButton = new JButton("Start Chess Game");
+		contentPane.add(startGameButton);
+		startGameButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+				public void run() {
+					try {
+						ChessGUI frame = new ChessGUI(battle);
+						frame.setVisible(true);
+					} catch (Exception e) { 	
+						e.printStackTrace();
+					}
+				}
+			});
+			}
+		});
+
+		JButton changeName = new JButton("Change Name");
+		contentPane.add(changeName);
+		changeName.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				name = null;
+				setName();
+				welcomeText.setText("Welcome to Java Chess " + name);
+			}
+		});
+	}
+
+	public void setName() {
+		if (name == null) {
+			name = JOptionPane.showInputDialog(null, "Enter your name");
+		}
 	}
 
 }
