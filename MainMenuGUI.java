@@ -17,6 +17,7 @@ public class MainMenuGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MainMenuGUI(Battle battle) {
+		readFromFile();
 		setName();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,7 +63,16 @@ public class MainMenuGUI extends JFrame {
 	public void setName() {
 		if (name == null) {
 			name = JOptionPane.showInputDialog(null, "Enter your name");
+			writeToFile(name);
 		}
+	}
+
+	public void readFromFile() {
+
+	}
+
+	public void writeToFile(String name) {
+
 	}
 
 }
