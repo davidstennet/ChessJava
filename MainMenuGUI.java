@@ -4,6 +4,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.*;
+import java.util.Scanner;
 
 import javax.swing.*;
 
@@ -17,7 +19,11 @@ public class MainMenuGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public MainMenuGUI(Battle battle) {
-		readFromFile();
+		try {
+			readFromFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		setName();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,8 +73,13 @@ public class MainMenuGUI extends JFrame {
 		}
 	}
 
-	public void readFromFile() {
-
+	public void readFromFile() throws IOException {
+		FileReader myReader = new FileReader("Name.txt");
+		Scanner scanner = new Scanner(myReader);
+		if (scanner.hasNextLine()) {
+			name = scanner.nextLine();
+		}
+		scanner.close();
 	}
 
 	public void writeToFile(String name) {
