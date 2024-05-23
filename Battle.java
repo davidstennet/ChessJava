@@ -47,48 +47,6 @@ public class Battle {
                 clickedOnKing(colRow, square, mapOfBoxes);
             }
         }
-        
-
-
-        // else if (clickedPiece.isWhite() && clickedPiece.canMove()) { // Moving piece after being clicked
-        //     // Sets image of original piece to nothin
-        //     String originalLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
-        //     JLabelBox originalBox = mapOfBoxes.get(originalLocation);
-        //     originalBox.setIcon(null);
-        //     white.getPieceLocation().remove(originalLocation);
-
-        //     // Sets new locations
-        //     clickedPiece.setColumn(square.getColumn());
-        //     clickedPiece.setRow(square.getRow());
-        //     String newLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
-        //     white.getPieceLocation().put(newLocation, clickedPiece);
-
-
-        //     ImageIcon icon = new ImageIcon(clickedPiece.getImgURL());
-        //     square.setIcon(icon);
-        //     firstClick = true;
-        //     clickedPiece = null;
-        // }
-        // else {
-        //     // Sets image of original piece to nothin
-        //     String originalLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
-        //     JLabelBox originalBox = mapOfBoxes.get(originalLocation);
-        //     originalBox.setIcon(null);        clickedPiece.getName();
-
-        //     black.getPieceLocation().remove(originalLocation);
-
-        //     // Sets new locations
-        //     clickedPiece.setColumn(square.getColumn());
-        //     clickedPiece.setRow(square.getRow());
-        //     String newLocation = Integer.toString(clickedPiece.getColumn()) + Integer.toString(clickedPiece.getRow());
-        //     black.getPieceLocation().put(newLocation, clickedPiece);
-
-
-        //     ImageIcon icon = new ImageIcon(clickedPiece.getImgURL());
-        //     square.setIcon(icon);
-        //     firstClick = true;
-        //     clickedPiece = null;
-        // }
     }
 
     private void clickedOnPawn(String colRow, JLabelBox square, HashMap<String, JLabelBox> mapOfBoxes) {
@@ -153,7 +111,7 @@ public class Battle {
     }
 
     private void clickedOnRook(String colRow, JLabelBox square, HashMap<String, JLabelBox> mapOfBoxes) {
-        Rook clickedRook = (Rook)clickedPiece; // Downcasts the pawn
+        Rook clickedRook = (Rook)clickedPiece; // Downcasts the Rook
         // boolean for whether the spot they are moving to is valid
         boolean canMove = clickedRook.canMove(square.getColumn(), square.getRow(), this.white.getPieceLocation(), this.black.getPieceLocation()); 
 
@@ -214,7 +172,7 @@ public class Battle {
     }
     
     private void clickedOnKnight(String colRow, JLabelBox square, HashMap<String, JLabelBox> mapOfBoxes) {
-        Knight clickedKnight = (Knight)clickedPiece; // Downcasts the pawn
+        Knight clickedKnight = (Knight)clickedPiece; // Downcasts the Knight
         // boolean for whether the spot they are moving to is valid
         boolean canMove = clickedKnight.canMove(square.getColumn(), square.getRow(), this.white.getPieceLocation(), this.black.getPieceLocation()); 
 
@@ -275,7 +233,7 @@ public class Battle {
     }
 
     private void clickedOnBishop(String colRow, JLabelBox square, HashMap<String, JLabelBox> mapOfBoxes) {
-        Bishop clickedBishop = (Bishop)clickedPiece; // Downcasts the pawn
+        Bishop clickedBishop = (Bishop)clickedPiece; // Downcasts the Bishop
         // boolean for whether the spot they are moving to is valid
         boolean canMove = clickedBishop.canMove(square.getColumn(), square.getRow(), this.white.getPieceLocation(), this.black.getPieceLocation()); 
 
@@ -336,7 +294,7 @@ public class Battle {
     }
     
     private void clickedOnQueen(String colRow, JLabelBox square, HashMap<String, JLabelBox> mapOfBoxes) {
-        Queen clickedQueen = (Queen)clickedPiece; // Downcasts the pawn
+        Queen clickedQueen = (Queen)clickedPiece; // Downcasts the Queen
         // boolean for whether the spot they are moving to is valid
         boolean canMove = clickedQueen.canMove(square.getColumn(), square.getRow(), this.white.getPieceLocation(), this.black.getPieceLocation()); 
 
@@ -399,30 +357,6 @@ public class Battle {
     private void clickedOnKing(String colRow, JLabelBox square, HashMap<String, JLabelBox> mapOfBoxes) {
 
     }
-
-    // Downcasts Piece according to its name so that it can get is methods
-    // private void downCastPiece() {
-    //     if (clickedPiece.getName() == "Pawn") {
-    //         Pawn clickedPawn = (Pawn)clickedPiece;
-    //     }
-    //     else if (clickedPiece.getName() == "Rook") {
-    //         Rook clickedRook = (Rook)clickedPiece;
-    //     }
-    //     else if (clickedPiece.getName() == "Knight") {
-    //         Knight clickedKnight = (Knight)clickedPiece;
-    //     }
-    //     else if (clickedPiece.getName() == "Bishop") {
-    //         Bishop clickedBishop = (Bishop)clickedPiece;
-    //     }
-    //     else if (clickedPiece.getName() == "Queen") {
-    //         Queen clickedQueen = (Queen)clickedPiece;
-    //     }
-    //     else {
-    //         King clickedKing = (King)clickedPiece;
-    //     }
-
-    // }
-
 
     // Getters and setters
     // Getter for white player

@@ -66,6 +66,7 @@ public class MainMenuGUI extends JFrame {
 		});
 	}
 
+	// Prompts the user to enter their name if it is not already set
 	public void setName() {
 		if (name == null) {
 			name = JOptionPane.showInputDialog(null, "Enter your name");
@@ -77,6 +78,7 @@ public class MainMenuGUI extends JFrame {
 		}
 	}
 
+	// Reads from Name.txt file and sets name to the value in the file
 	public void readFromFile() throws IOException {
 		FileReader myReader = new FileReader("Name.txt");
 		Scanner scanner = new Scanner(myReader);
@@ -86,6 +88,7 @@ public class MainMenuGUI extends JFrame {
 		scanner.close();
 	}
 
+	// Writes the name to the Name.txt file when it is changed
 	public void writeToFile(String name) throws IOException {
 		FileWriter myWriter = new FileWriter("Name.txt");
 		myWriter.write(name);

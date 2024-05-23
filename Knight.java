@@ -6,6 +6,9 @@ public class Knight extends Piece {
 		super(column, row, imgURL, name, isWhite);
 	}
 
+	/*
+	 * This method returns a boolean for whether or not the piece can move to a certain target location
+	 */
 	public boolean canMove(int targetColumn, int targetRow, HashMap<String, Piece> whitePieces, HashMap<String, Piece> blackPieces) {
 		String colRow = Integer.toString(targetColumn) + Integer.toString(targetRow);
 

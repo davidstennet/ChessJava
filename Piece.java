@@ -16,6 +16,9 @@ public abstract class Piece {
         this.isWhite = isWhite;
 	}
 
+    /*
+	 * This method returns a boolean for whether or not the piece can move to a certain target location
+	 */
     abstract boolean canMove(int targetColumn, int targetRow, HashMap<String, Piece> whitePieces, HashMap<String, Piece> blackPieces);
 
 	// Getter for xPos

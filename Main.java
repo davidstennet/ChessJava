@@ -86,6 +86,7 @@ public class Main {
 
 		Battle battle = new Battle(white, black);
 
+		// Creation of the MainMenuGUI
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
