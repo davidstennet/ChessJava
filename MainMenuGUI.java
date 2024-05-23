@@ -24,12 +24,6 @@ public class MainMenuGUI extends JFrame {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		try {
-			readFromFile();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		setName();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,13 +84,6 @@ public class MainMenuGUI extends JFrame {
 			name = scanner.nextLine();
 		}
 		scanner.close();
-	public void readFromFile() throws FileNotFoundException {
-		File file = new File("Name.txt");
-		Scanner myReader = new Scanner(file);
-		while (myReader.hasNextLine()) {
-			name = myReader.nextLine();
-		}
-		myReader.close();
 	}
 
 	public void writeToFile(String name) throws IOException {
